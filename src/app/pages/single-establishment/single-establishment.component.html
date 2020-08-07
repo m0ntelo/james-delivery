@@ -1,0 +1,100 @@
+<app-header></app-header>
+
+<ng-container *ngIf="establishments">
+  
+  <app-nav picture={{establishments.picture}} name="{{establishments.name}}" id="{{establishments.id}}"></app-nav>
+
+  <form [formGroup]="formEstablishments" (ngSubmit)="onSubmit()">
+    <div class="single-establishment">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="companies-title">Informaçoes básicas</div>
+          </div>
+          <div class="col-md-4">
+            <app-single-input>
+              <label for="name">Nome</label>
+              <input [class.has-error]="hasError(formEstablishments.get('name'))" name="name" type="text" formControlName='name'>
+              <span *ngIf="hasError(formEstablishments.get('name'))" class="help-block">{{getErrorMessage(formEstablishments.get('name'))}}</span>
+            </app-single-input>
+          </div>
+          <div class="col-md-4">
+            <app-select>
+              <label for="city">Cidade</label>
+              <select name="city" formControlName="city" required>
+                <option *ngFor="let item of cidade" value="{{item}}">{{ item }}</option>
+              </select> 
+              <span *ngIf="hasError(formEstablishments.get('city'))" class="help-block">{{getErrorMessage(formEstablishments.get('city'))}}</span>
+            </app-select>
+          </div>
+          <div class="col-md-4">
+            <app-single-input>
+              <label for="address">Endereço</label>
+              <input name="address" type="text" formControlName="address">
+              <span *ngIf="hasError(formEstablishments.get('address'))" class="help-block">{{getErrorMessage(formEstablishments.get('address'))}}</span>
+            </app-single-input>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="companies-title">Financeiro</div>
+          </div>
+          <div class="col-md-4">
+            <app-select>
+              <label for="bank">Banco</label>
+              <select name="bank" formControlName="bank" required>
+                <option *ngFor="let item of banco" value="{{item}}">{{ item }}</option>
+              </select>
+            </app-select>
+          </div>
+          <div class="col-md-4">
+            <app-select>
+              <label for="tConta">Tipo de Conta</label>
+              <select name="tAccount" formControlName="tAccount" required>
+                <option *ngFor="let item of tConta" value="{{item}}">{{ item }}</option>
+              </select>
+            </app-select>
+          </div>
+          <div class="col-md-4">
+            <app-single-input>
+              <label for="cpf">CPF / CNPJ</label>
+              <input name="cpf" type="text" formControlName="cpf"  [imask]="{mask: '00.000.000/0000-00'}" required>   
+            </app-single-input>
+          </div>
+          <div class="col-md-4">
+            <app-double-input>
+              <label>Agência</label>
+              <input class="input-primary" type="text" formControlName="agency"  [imask]="{mask: '000000'}"> 
+              <input class="input-secondary" type="text" formControlName="digitAgency" [imask]="{mask: '0'}"> 
+              <span *ngIf="hasError(formEstablishments.get('agency'))" class="help-block">{{getErrorMessage(formEstablishments.get('agency'))}}</span>
+            </app-double-input>
+          </div>
+          <div class="col-md-4">
+            <app-double-input>
+              <label>Conta</label>
+              <input class="input-primary" type="text" formControlName="account"  [imask]="{mask: '000000'}"> 
+              <input class="input-secondary" type="text" formControlName="digitAccount" [imask]="{mask: '0'}"> 
+              <span *ngIf="hasError(formEstablishments.get('account'))" class="help-block">{{getErrorMessage(formEstablishments.get('account'))}}</span>
+            </app-double-input>
+          </div>
+          <div class="col-md-4">
+            <app-select>
+              <label for="sAutomatic">Saque Automático</label>
+              <select name="sAutomatic" formControlName="sAutomatic">
+                <option *ngFor="let item of sAutomatico" value="{{item}}">{{ item }}</option>
+              </select>
+              <span *ngIf="hasError(formEstablishments.get('sAutomatic'))" class="help-block">{{getErrorMessage(formEstablishments.get('sAutomatic'))}}</span>
+            </app-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <app-button>
+               <button [disabled]="formEstablishments.invalid" type="submit" >Salvar</button>
+            </app-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-container>

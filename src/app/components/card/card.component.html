@@ -1,0 +1,9 @@
+<a routerLink="establishment/{{ id }}" class="companies">
+  <div class="col-md-1">
+    <img width="74" height="74" src="{{ picture }}">
+  </div>
+  <div class="col-md-11">
+    <div class="card-title">{{ name }} <div class="id">{{ id | slice:0:6 }}</div></div>
+    <div class="card-descrition">{{ address }}</div>
+  </div>
+</a>
