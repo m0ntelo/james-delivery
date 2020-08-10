@@ -4,12 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
 import { AppService } from '../../service/app.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { switchMap } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
-
-
-
 
 @Component({
   selector: 'app-single-establishment',
@@ -19,7 +15,7 @@ import { Title } from '@angular/platform-browser';
 export class SingleEstablishmentComponent implements OnInit {
 
   establishments: Establishments;
-  estabelecimentosLocal: Establishments[] = [];
+  establishmentsLocal: Establishments[] = [];
 
   banco: Array<Object> = ['Ítau', 'Santander', 'Bradesco'];
   cidade: Array<Object> = ['Curitiba', 'Sao Paulo', 'Porto Alegre', 'Rio de Janeiro'];
@@ -33,15 +29,11 @@ export class SingleEstablishmentComponent implements OnInit {
     private establishmentsService: AppService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private router: Router,
-    private title: Title,
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
     this.createForm(new Establishments())
-    this.getEstablishments();
-
+    this.getEstablishments()
   }
 
   getEstablishments(): void {
@@ -62,29 +54,27 @@ export class SingleEstablishmentComponent implements OnInit {
 
   onSubmit(): void {
 
-    const newEstabelecimento = this.formEstablishments.value;
+    const newEstablishments = this.formEstablishments.value;
 
     if (this.storageService.getLocalEstablishments() != null) {
-      this.estabelecimentosLocal = [].concat(this.storageService.getLocalEstablishments());
+      this.establishmentsLocal = [].concat(this.storageService.getLocalEstablishments());
     }
 
-    const oldEstabelecimento = this.estabelecimentosLocal.find(item => item.id === newEstabelecimento.id);
+    const oldEstablishments = this.establishmentsLocal.find(item => item.id === newEstablishments.id);
 
-    if (oldEstabelecimento) {
-      const indexElement = this.estabelecimentosLocal.indexOf(oldEstabelecimento);
-      this.estabelecimentosLocal.splice(indexElement, 1, newEstabelecimento);
+    if (oldEstablishments) {
+      const indexElement = this.establishmentsLocal.indexOf(oldEstablishments);
+      this.establishmentsLocal.splice(indexElement, 1, newEstablishments);
     }
     else {
-      this.estabelecimentosLocal.push(newEstabelecimento);
+      this.establishmentsLocal.push(newEstablishments);
     }
 
-    this.storageService.setLocalEstablishments(this.estabelecimentosLocal);
-    this.establishments = newEstabelecimento;
+    this.storageService.setLocalEstablishments(this.establishmentsLocal);
+    this.establishments = newEstablishments;
     this.establishmentsService.showMessage("Estabelecimento atualizado com sucesso!");
 
   }
-
-
 
   createForm(p: Establishments) {
 
@@ -110,15 +100,14 @@ export class SingleEstablishmentComponent implements OnInit {
       account: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
       digitAccount: [null, [Validators.required]],
       sAutomatic: [null, [Validators.required]]
-
     });
   }
 
   private findByItemLocalStorage(id: string): Establishments {
 
     if (this.storageService.getLocalEstablishments() != null) {
-      this.estabelecimentosLocal = [].concat(this.storageService.getLocalEstablishments());
-      return this.estabelecimentosLocal.find(item => item.id === id);
+      this.establishmentsLocal = [].concat(this.storageService.getLocalEstablishments());
+      return this.establishmentsLocal.find(item => item.id === id);
     }
     return null;
   }

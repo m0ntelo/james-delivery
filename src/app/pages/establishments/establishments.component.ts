@@ -27,13 +27,13 @@ export class EstablishmentsComponent implements OnInit {
 
   private updateEstablishments(response: Establishments[]): void {
 
-    const estabelecimentosLocais = <Establishments[]>this.storageService.getLocalEstablishments();
+    const establishmentsLocais = <Establishments[]>this.storageService.getLocalEstablishments();
 
-    if (estabelecimentosLocais != null) {
+    if (establishmentsLocais != null) {
 
       response.forEach(e => {
 
-        const findElement = estabelecimentosLocais.find(item => item.id === e.id);
+        const findElement = establishmentsLocais.find(item => item.id === e.id);
 
         if (findElement) {
           const indexElement = response.findIndex(item => item.id == findElement.id);

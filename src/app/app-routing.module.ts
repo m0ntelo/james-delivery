@@ -9,9 +9,6 @@ const routes: Routes = [
   {
     path: "",
     component: EstablishmentsComponent,
-    data: {
-      title: 'Dashboard'
-    }
   },
   {
     path: "establishment/:id",

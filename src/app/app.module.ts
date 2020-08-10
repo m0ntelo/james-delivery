@@ -1,14 +1,12 @@
-import { LocalStorageService } from './service/localStorage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from  '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatSnackBarModule } from  '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { NavComponent } from './components/nav/nav.component';
 import { EstablishmentsComponent } from './pages/establishments/establishments.component';
 import { SingleEstablishmentComponent } from './pages/single-establishment/single-establishment.component';
 import { CardComponent } from './components/card/card.component';
@@ -18,11 +16,12 @@ import { SelectComponent } from './components/select/select.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ButtonComponent } from './components/button/button.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LocalStorageService } from './service/localStorage.service';
 
 import { NgHttpLoaderModule } from 'ng-http-loader';
-import {IMaskModule} from 'angular-imask';
-import { NavComponent } from './components/nav/nav.component';
+import { IMaskModule } from 'angular-imask';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { MatSnackBarModule } from  '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -46,9 +45,9 @@ import { NavComponent } from './components/nav/nav.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule,
     IMaskModule,
-    NgHttpLoaderModule.forRoot()
+    NgHttpLoaderModule.forRoot(),
+    NgxMaskModule.forRoot()
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]

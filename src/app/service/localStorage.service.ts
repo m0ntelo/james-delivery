@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const key = 'Estabelecimentos'
+const key = 'Establishments'
 
 @Injectable({
   providedIn: 'root'

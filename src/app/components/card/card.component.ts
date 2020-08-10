@@ -13,6 +13,7 @@ export class CardComponent implements OnInit {
   @Input() name: string;
   @Input() address: string;
   @Input() picture: string;
+  @Input() city: string;
 
   ngOnInit(): void {
   }

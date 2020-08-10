@@ -58,7 +58,7 @@
           <div class="col-md-4">
             <app-single-input>
               <label for="cpf">CPF / CNPJ</label>
-              <input name="cpf" type="text" formControlName="cpf"  [imask]="{mask: '00.000.000/0000-00'}" required>   
+              <input name="cpf" type="text" formControlName="cpf" mask="000.000.000-00||00.000.000/0000-00" required>   
             </app-single-input>
           </div>
           <div class="col-md-4">
